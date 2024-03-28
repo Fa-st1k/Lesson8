@@ -1,0 +1,94 @@
+import asyncio
+async def count():
+    print("One")
+    await asyncio.sleep(1)
+    print("Two")
+async def main():
+    await asyncio.gather(count(), count(), count())
+if __name__ == "__main__":
+    import time
+    s = time.perf_counter()
+    asyncio.run(main())
+    elapsed = time.perf_counter() - s
+    print(f"{__file__} executed in {elapsed:0.2f} seconds.")
+    
+    
+    
+import asyncio
+async def task_one():
+    print("Задача 1: Начало выполнения")
+    await asyncio.sleep(2)
+    print("Задача 1: Завершение выполнения")
+    
+async def task_two():
+    print("Задача 2: Начало выполнения")
+    await asyncio.sleep(1)
+    print("Задача 2: Завершение выполнения")
+    
+async def main():
+    # Запуск нескольких асинхронных задач
+    await asyncio.gather(task_one(), task_two())
+# # Запуск асинхронной программы
+asyncio.run(main())
+
+def simple_generator():
+    for i in range(3):
+        print(f"Генерация значения {i}")
+        yield i
+    print("Генератор завершен")# Использование генератора
+    
+gen = simple_generator()
+print(next(gen))  # Генерация значения 0
+print(next(gen))  # Генерация значения 1
+print(next(gen))  # Генерация значения 2
+print(next(gen))  
+# Вызовет StopIteration, так как генератор завершен
+
+
+import asyncio
+async def async_generator():
+    for i in range(5):
+        print(f"Генерация значения {i}")
+        await asyncio.sleep(1)
+        yield i
+        
+async def main():
+    # Итерация по асинхронному генератору
+    async for a in async_generator():
+        print(f"Получено значение: {a}")
+        
+asyncio.run(main())
+
+
+from bs4 import BeautifulSoup
+import asyncio
+import requests
+from bs4 import BeautifulSoup
+url = 'https://www.franksonnenbergonline.com/blog/are-you-grateful/'
+response = requests.get(url)
+response.raise_for_status()
+import requests
+from bs4 import BeautifulSoup 
+url = 'https://www.vidal.ru/drugs/products/p/rus-a'
+response = requests.get(url)
+response.raise_for_status()
+soup = BeautifulSoup(response.text, 'lxml')
+# print(soup.find('h1')
+      
+      
+      
+      
+import requests
+from bs4 import BeautifulSoup
+url = 'https://www.vidal.ru/drugs/products/p/rus-a'
+response = requests.get(url)
+response.raise_for_status()
+soup = BeautifulSoup(response.text, 'lxml')
+print(soup.find('h1'))
+
+async def task_one():
+    await asyncio.sleep(2)   
+    for t in soup.find('tr'):
+        print(t)     
+        await asyncio.sleep(0.6)
+asyncio.run(task_one())
